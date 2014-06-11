@@ -42,9 +42,7 @@ Your local environment will consist of the following :
 
 . *JBoss Developer Studio* : Eclipse based IDE containing the _Integration Stack_ suite of plugins.
 
-==== Maven Repository
-
-A server hosting the Maven repository containing the source code for the FSW applications.
+. A repository for source code of FSW projects.
 
 
 == Pre-Requisites
