@@ -1,12 +1,20 @@
 :data-uri:
 :toc2:
+
+:rpms: link:https://github.com/jboss-gpe-ose/jboss_bpm_soa_rpmbuild[RPMs]
+:fswcart: link:https://github.com/jboss-gpe-ose/openshift-origin-cartridge-fsw-full[Red Hat GPE's FSW cartridge]
+:fswproduct: link:https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Fuse_Service_Works/[Red Hat's FSW product]
+:osetools: link:https://access.redhat.com/site/documentation/en-US/OpenShift_Enterprise/2/html/Client_Tools_Installation_Guide/index.html[Openshift Enterprise Client Tools]
+:remotejavaapi: link:https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_BPM_Suite/6.0/html-single/Development_Guide/index.html#sect-Remote_Java_API[Remote Java API Client]
+:executionserver: link:https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_BPM_Suite/6.0/html-single/Development_Guide/index.html#chap-REST_API[Exection Server]
+
 :rhtlink: link:https://www.redhat.com[Red Hat]
 
 image::images/rhheader.png[width=900]
 
 :numbered!:
 [abstract]
-== JBoss GPE Reference Architecture:  Template
+== JBoss GPE Reference Architecture:  Design Time Governance
 
 :numbered:
 
@@ -14,32 +22,54 @@ image::images/rhheader.png[width=900]
 
 == Overview
 
+
+=== Deployment Architecture
+
+image::images/DeploymentDiagram.png[width=900]
+
+This reference architecture consists of various components:
+
+==== OpenShift Enterprise 2.* FSW S-RAMP/DT-GOV
+
+This node consists of the FSW Design Time Governance components S-RAMP and DT-GOV. 
+
+==== OpenShift Enterprise 2.* FSW App
+
+This node consists of the complete FSW installation excluding the Design Time Governance components. 
+
+==== Local Environment
+Your local environment will consist of the following :
+
+. *JBoss Developer Studio* : Eclipse based IDE containing the _Integration Stack_ suite of plugins.
+
+==== Maven Repository
+
+A server hosting the Maven repository containing the source code for the FSW applications.
+
+
 == Pre-Requisites
 
-== Procedure
-* For the purposes of this documentation, the name _$REF_ARCH_HOME_ refers to the root directory of this reference architecture.
+The remainder of this documentation provides instructions for installation, configuration and execution of this reference architecture.
+The following is a list of pre-requisites:
 
-== Performance Testing
-* JMeter is used to drive testing of the reference architecture.
-* You do not need to download a seperate JMeter binary nor source distribution
-* Instead, JMeter will be downloaded, installed and appropriately configured as part of the configuration found in $REF_ARCH_HOME/loadtest
-* jmeter maven plugin
-** Notice use of the com.lazerycode.jmeter:jmeter-maven-plugin in _$REF_ARCH_HOME/loadtest/pom.xml_ 
-** This maven plugin downloads, installs and appropriately configures JMeter
-** This maven plugin is also used to drive test scenarios
-* ref_arch.jmx
-** A sample default jmeter load test definition file is included in: $REF_ARCH_HOME/loadtest/src/test/jmeter/ref_arch.jmx
-** This jmeter load test definition file can be viewed and manipulated via the JMeter GUI by:
-*** cd $REF_ARCH_HOME/loadtest
-** Notice that the default, OOB configuration is to spawn a single client that invokes a single test case
-** ./jmeter_gui.sh
-* Java Sampler
-** Also included is an example Java _Sampler_ at:  $REF_ARCH_HOME/loadtest/src/test/java/com/redhat/gpe/refarch/ref_arch_template/loadtest/ExampleJMeterClient.java
-** The use of a JMeter _sampler_ class is optional
-** cd $REF_ARCH_HOME/loadtest
-** mvn clean verify
+. {osetools}
+. Openshift Enterprise 2.* environment that has been installed with {rpms} needed to support Red Hat GPE's FSW cartridges.
+Red Hat GPE's _Partner Demo System_ is one such environment.
+Contact the Red Hat GPE team for more details.
+. Two medium-sized Openshift Enterprise gear provisioned with {fswcart} and mysql-5.
+. ssh client
+. maven 3.0.5 (or greater)
+. git client
+. familiarity with {fswproduct}
+. proficiency with the _bash_ shell 
+
+As is evidenced by these pre-requisites, the assumed BPM Suite 6 run-time environment for this reference architecture is an Openshift Enterprise gear.
+However, BPM Suite 6 and Fuse Service Works can be installed in non-PaaS local environments.
+Thus, with some adjustments, it could be possible to execute this reference architecture in a non-PaaS local environment as well.
+
+
 
 == To-Do
-. resolve this problem
-. resolve that problem
+
+
 =======
