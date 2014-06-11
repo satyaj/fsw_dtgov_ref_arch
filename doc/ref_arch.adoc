@@ -14,7 +14,7 @@ image::images/rhheader.png[width=900]
 
 :numbered!:
 [abstract]
-== JBoss GPE Reference Architecture:  Design Time Governance
+== JBoss GPE Reference Architecture:  Fuse Service Works Design Time Governance
 
 :numbered:
 
