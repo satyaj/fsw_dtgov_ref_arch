@@ -20,7 +20,10 @@ image::images/rhheader.png[width=900]
 
 == Abstract
 
+
+
 == Overview
+
 
 
 === Deployment Architecture
@@ -43,6 +46,19 @@ Your local environment will consist of the following :
 . *JBoss Developer Studio* : Eclipse based IDE containing the _Integration Stack_ suite of plugins.
 
 . A repository for source code of FSW projects.
+
+
+=== Project Structure
+
+The project consists of the following modules:
+
+:numbered:
+
+. *artifacts* - This module consists of the schemas, contracts and policies that are to be governed in the application. These artifacts are packaged in a single jar file are managed in the S-RAMP repository. This module becomes the central artifact repository to be referenced by all other SOA projects in the application. 
+
+. *switchyard_project* - This project consists of a switchyard application depending the artifacts being governed under S-RAMP. The dependencies are resolved using a *maven-wagon* plugin to the S-RAMP repository. 
+
+. *dt_gov_workflow* - This project consists of the jBPM process and associated code in order to run life cycle management of the switchyard project.
 
 
 == Pre-Requisites
